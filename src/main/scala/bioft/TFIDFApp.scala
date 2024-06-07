@@ -10,7 +10,7 @@ import org.apache.spark.sql.functions.{col, expr, lit, log, log10, size}
 import java.io.File
 
 object TFIDFApp {
-  def compute_tfidf(k: Int, pathSavedTf: String, pathSaveTfIDF: String,  sc:JavaSparkContext, sqlContext: SQLContext, spark: SparkSession): DataFrame = {
+  def compute_tfidf(pathSavedTf: String, pathSaveTfIDF: String,  sc:JavaSparkContext, sqlContext: SQLContext, spark: SparkSession): DataFrame = {
 
     val util = utils()
     val directory_tfidf =new File(pathSaveTfIDF)
@@ -21,29 +21,26 @@ object TFIDFApp {
       // use directory.mkdirs(); here instead.
     }
 
-    val lst_name_files=  util.getListOfFolder(new File(pathSavedTf), List(""))
-    var name_files= sc.parallelize(lst_name_files).map(x => x.getAbsolutePath.split("/").takeRight(1).toList).collect().toList
+    //val lst_name_files=  util.getListOfFolder(new File(pathSavedTf), List(""))
+    //var name_files= sc.parallelize(lst_name_files).map(x => x.getAbsolutePath.split("/").takeRight(1).toList).collect().toList
     //print(name_files(0)(0))
     //print(name_files.length)
     //if(folder_comp == "single") {
-    var first_parquet_file: org.apache.spark.sql.DataFrame = spark.read.load(pathSavedTf + name_files(0).head + "/*")
+    //var first_parquet_file: org.apache.spark.sql.DataFrame = spark.read.load(pathSavedTf + name_files(0).head + "/*")
     //print(name_files)
     //print(name_files(0).head.split("_").toList)
     var N_size = 0
+    var first_parquet_file: org.apache.spark.sql.DataFrame =  spark.read.load(path = pathSavedTf +"/*")
+    N_size =  first_parquet_file.select("id_file").distinct().count().toInt
+
+   // for (ind <- 1 until (name_files.length)) {
+    //  print(name_files(ind).head + "\n")
+    //  var tempFile: org.apache.spark.sql.DataFrame = spark.read.load(pathSavedTf + name_files(ind).head + "/*")
+    //
+    //  N_size = first_parquet_file.select("id_file").distinct().count().toInt
+   // }
 
 
-    for (ind <- 1 until (name_files.length)) {
-      print(name_files(ind).head + "\n")
-      var tempFile: org.apache.spark.sql.DataFrame = spark.read.load(pathSavedTf + name_files(ind).head + "/*")
-      first_parquet_file = first_parquet_file.union(tempFile)
-      N_size = first_parquet_file.select("id_file").distinct().count().toInt
-    }
-    /*
-  }else{
-    //solo con SET
-    var first_parquet_file: org.apache.spark.sql.DataFrame =  spark.read.load(path = pathSavedTf +"*")
-    N_size =  first_parquet_file.select("id_set").distinct().count().toInt
-  }*/
     //print(first_parquet_file.select("id_file").distinct().count())
     var list_kmer = first_parquet_file.select("kmers").rdd.map(r => r(0))
     var kmer_shared: RDD[(String, Int)] = list_kmer
