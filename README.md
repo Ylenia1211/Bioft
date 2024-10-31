@@ -30,7 +30,7 @@ Press CTRL+X to exit the editor Press Y to save your changes and check:
 
 3. **Install SBT**
    
-If you haven’t installed SBT, you can do so by following instructions at the https://www.scala-sbt.org/download/
+If you haven’t installed SBT version sbt-1.9.2, you can do so by following instructions at the https://www.scala-sbt.org/download/
 
 4. **Clone the repository**
 
