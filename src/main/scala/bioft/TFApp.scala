@@ -5,19 +5,11 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, SQLContext, SparkSession}
 import org.apache.spark.sql.functions.{col, lit}
 import org.apache.spark.{SparkConf, SparkContext}
-
 import java.io.File
-
-
 
 object TFApp extends  App {
 
-  def hello(): Unit ={
-    println("hola")
-  }
-
   def process(k: Int, filePath: String, name_file:String, sc:JavaSparkContext, sqlContext: SQLContext): DataFrame = {
-    println("hello")
     val util = utils()
     val K: Int = k + 1
     val broadcastK: Broadcast[Int] =  sc.broadcast(K)
@@ -36,7 +28,7 @@ object TFApp extends  App {
 
     //print(filterRDD_old.collect())
     var num_line = filterRDD_old.map(_.split("\n")).map(line => (line,1)).map(_._2).reduce(_ + _)
-    print("\nNumero righe: ",  num_line)
+    print("\nNumber of rows: ",  num_line)
 
     var kmerSeq = util.mapper_kmers_simple(k, filterRDD_old, broadcastK)
     var kmersCount: RDD[(String, Integer)] = kmerSeq.rdd.reduceByKey(_ + _)
