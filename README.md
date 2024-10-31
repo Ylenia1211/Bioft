@@ -54,7 +54,7 @@ To package your project as a JAR file, run:
 sbt package
 ```
 
-This will create a JAR file in the target/scala-2.12/ directory, named **bioft.jar**.
+This will create a JAR file in the target/scala-2.12/ directory, named **bioft_2.12-0.1.0-SNAPSHOT.jar**.
 
 
 
