@@ -1,3 +1,9 @@
+## Requirements
+- Scala 2.12 
+- JDK 8
+- [Apache Spark](https://spark.apache.org/) (for distributed computing) version 3.5.1
+
+
 ## Installation
 
 1. Install and setup JAVA:
@@ -21,3 +27,24 @@ Press CTRL+X to exit the editor Press Y to save your changes and check:
 2. Set up Apache Spark version 3.5.1:
 
     Follow the [official guide](https://spark.apache.org/docs/latest/index.html) to set up Apache Spark in your environment.
+
+3. **Install SBT**
+If you haven’t installed SBT, you can do so by following instructions at the https://www.scala-sbt.org/download/
+
+4. **Compile the Project**
+In your project directory, open a terminal and run:
+
+```bash
+sbt compile
+```
+5. **Create the JAR File**
+To package your project as a JAR file, run:
+
+```bash
+sbt package
+```
+
+This will create a JAR file in the target/scala-2.12/ directory, named **bioft.jar**.
+
+
+
