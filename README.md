@@ -6,7 +6,7 @@
 
 ## Installation
 
-1. Install and setup JAVA:
+1. **Install and setup JAVA**:
 
     To install Liberica JDK 1.8.0_422 on your system, you can follow the instructions provided in the official Liberica documentation https://bell-sw.com/pages/downloads/#jdk-8-lts. Once the installation is complete, make sure to configure your development environment to point to the new Java installation.
 
@@ -24,7 +24,7 @@ Press CTRL+X to exit the editor Press Y to save your changes and check:
         java -version
  
 ```
-2. Set up Apache Spark version 3.5.1:
+2.**Set up Apache Spark version 3.5.1**:
 
     Follow the [official guide](https://spark.apache.org/docs/latest/index.html) to set up Apache Spark in your environment.
 
@@ -32,14 +32,14 @@ Press CTRL+X to exit the editor Press Y to save your changes and check:
    
 If you haven’t installed SBT, you can do so by following instructions at the https://www.scala-sbt.org/download/
 
-5. **Clone the repository**
+4. **Clone the repository**
 
     ```bash
     git clone https://github.com/Ylenia1211/Bioft.git
     cd Bioft
     ```
 
-6. **Compile the Project**
+5. **Compile the Project**
    
 In project directory there is a *build.sbt* file, open a terminal and run:
 
