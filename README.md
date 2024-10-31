@@ -29,15 +29,25 @@ Press CTRL+X to exit the editor Press Y to save your changes and check:
     Follow the [official guide](https://spark.apache.org/docs/latest/index.html) to set up Apache Spark in your environment.
 
 3. **Install SBT**
+   
 If you haven’t installed SBT, you can do so by following instructions at the https://www.scala-sbt.org/download/
 
-4. **Compile the Project**
-In your project directory, open a terminal and run:
+5. **Clone the repository**
+
+    ```bash
+    git clone https://github.com/Ylenia1211/Bioft.git
+    cd Bioft
+    ```
+
+6. **Compile the Project**
+   
+In project directory there is a *build.sbt* file, open a terminal and run:
 
 ```bash
 sbt compile
 ```
-5. **Create the JAR File**
+
+6. **Create the JAR File**
 To package your project as a JAR file, run:
 
 ```bash
